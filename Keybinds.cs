@@ -72,9 +72,9 @@ public class Keybinds
     }
     private static IEnumerator LoadRoom(string sceneName)
     {
-        var loadop = USceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-        loadop.allowSceneActivation = true;
-        yield return loadop;
+        var loadOp = USceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        loadOp!.allowSceneActivation = true;
+        yield return loadOp;
         GameManager.instance.RefreshTilemapInfo(sceneName);
 
         var settings = DebugMod.DebugMod.settings;
