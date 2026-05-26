@@ -1,4 +1,5 @@
 using BepInEx;
+using BepInEx.Configuration;
 using DebugMod.SaveStates;
 using HarmonyLib;
 using HutongGames.PlayMaker.Actions;
@@ -13,12 +14,15 @@ public partial class GlitchDebugPlugin : BaseUnityPlugin
     private static GlitchDebugPlugin? _instance;
     internal static GlitchDebugPlugin Instance => _instance!;
 
-    internal bool SaveDupedStates = false;
-    internal bool undupeThisState = false;
+    internal ConfigEntry<bool> SaveDupedStates;
     
     private void Awake()
     {
         if (_instance == null) _instance = this;
+        SaveDupedStates = Config.Bind("General",
+            "SaveDupedStates",
+            true,
+            "Whether to save states as duped; mirrors the corresponding keybind.");
         
         DebugMod.DebugMod.AddToKeyBindList(typeof(Keybinds));
         SaveState.BeforeLoad += Savestates.BeforeLoad;

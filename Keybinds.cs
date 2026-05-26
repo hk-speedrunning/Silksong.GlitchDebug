@@ -5,6 +5,7 @@ using System.Linq;
 using DebugMod;
 using DebugMod.Hitbox;
 using DebugMod.SaveStates;
+using DebugMod.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
@@ -18,8 +19,8 @@ public class Keybinds
     [BindableMethod(name = "Toggle Duped States", category = "Glitches")]
     public static void ToggleDupedStates()
     {
-        GlitchDebugPlugin.Instance.SaveDupedStates ^= true;
-        DebugMod.DebugMod.LogConsole($"Duped states {(GlitchDebugPlugin.Instance.SaveDupedStates ? "enabled" : "disabled")}");
+        GlitchDebugPlugin.Instance.SaveDupedStates.Value ^= true;
+        DebugMod.DebugMod.LogConsole($"Duped states {(GlitchDebugPlugin.Instance.SaveDupedStates.Value ? "enabled" : "disabled")}");
     }
     
     [BindableMethod(name = "MMS dupe to bench", category = "Glitches")]
@@ -90,7 +91,7 @@ public class Keybinds
     [BindableMethod(name = "Undupe Active Room", category = "Glitches")]
     public static void UndupeActiveRoom()
     {
-        GlitchDebugPlugin.Instance.undupeThisState = true;
+        Savestates.UndupeThisState = true;
         var state = SaveStateManager.SaveNewState();
         GameManager.instance.StartCoroutine(state.Load());
     }
