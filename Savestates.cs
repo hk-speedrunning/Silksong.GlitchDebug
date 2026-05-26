@@ -1,11 +1,12 @@
 using DebugMod.SaveStates;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GlitchDebug;
 
 internal static class Savestates
 {
-    internal static bool UndupeThisState = false;
+    internal static bool UndupeThisState;
     
     private static bool StateFlagEnabled(SaveState state, string flagName)
     {
@@ -15,7 +16,7 @@ internal static class Savestates
 
     internal static void OnSave(SaveState state)
     {
-        if (GlitchDebugPlugin.Instance.SaveDupedStates.Value || !UndupeThisState)
+        if ((GlitchDebugPlugin.Instance.SaveDupedStates.Value || !UndupeThisState))
         {
             state.data.customData["GlitchDebug.Duped"] = "true";
         }
@@ -39,19 +40,9 @@ internal static class Savestates
         
     }
 
-    private static bool StateIsDupedHeuristic(SaveState state)
-    {
-        return state.data.loadedScenes.Length switch
-        {
-            1 => false,
-            2 => state.data.loadedScenes[1] == $"{state.data.loadedScenes[0]}_boss",
-            _ => true
-        };
-    }
-
     internal static void BeforeLoad(SaveState state)
     {
-        if (StateFlagEnabled(state, "GlitchDebug.Duped") || StateIsDupedHeuristic(state))
+        if (StateFlagEnabled(state, "GlitchDebug.Duped") || GlitchDebugPlugin.Instance.LegacyForceDuped.Value)
         {
             SaveState.LoadDuped = true;
         }

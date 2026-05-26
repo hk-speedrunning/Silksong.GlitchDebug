@@ -15,6 +15,7 @@ public partial class GlitchDebugPlugin : BaseUnityPlugin
     internal static GlitchDebugPlugin Instance => _instance!;
 
     internal ConfigEntry<bool> SaveDupedStates;
+    internal ConfigEntry<bool> LegacyForceDuped;
     
     private void Awake()
     {
@@ -23,6 +24,11 @@ public partial class GlitchDebugPlugin : BaseUnityPlugin
             "SaveDupedStates",
             true,
             "Whether to save states as duped; mirrors the corresponding keybind.");
+        
+        LegacyForceDuped = Config.Bind("General",
+            "LegacyForceDuped",
+            false,
+            "Forces duped loading for savestates made prior to v0.2. Will be removed in future; recreate duped states!");
         
         DebugMod.DebugMod.AddToKeyBindList(typeof(Keybinds));
         SaveState.BeforeLoad += Savestates.BeforeLoad;
