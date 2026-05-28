@@ -1,11 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using DebugMod;
 using DebugMod.Hitbox;
 using DebugMod.SaveStates;
-using DebugMod.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
@@ -15,7 +11,6 @@ namespace GlitchDebug;
 
 public class Keybinds
 {
-    //TODO: consider whether DebugMod could infer LoadDuped automatically? Or if the duped loading should come to us?
     [BindableMethod(name = "Toggle Duped States", category = "Glitches")]
     public static void ToggleDupedStates()
     {
@@ -105,38 +100,39 @@ public class Keybinds
         DebugMod.DebugMod.LogConsole("All Scene Data reset.");
     }
     
-    [BindableMethod(name = "Print load names", category = "Glitches")]
-    public static void PrintLoadNames()
-    {
-        IEnumerable<TransitionPoint> transitionPoints = TransitionPoint.TransitionPoints;
-        IEnumerable<TransitionPoint> leftLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.left)
-            .OrderBy(load => -load.gameObject.GetComponent<Collider>().bounds.center.y);
-        IEnumerable<TransitionPoint> rightLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.right)
-            .OrderBy(load => -load.gameObject.GetComponent<Collider>().bounds.center.y);
-        IEnumerable<TransitionPoint> topLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.top)
-            .OrderBy(load => load.gameObject.GetComponent<Collider>().bounds.center.x);
-        IEnumerable<TransitionPoint> bottomLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.bottom)
-            .OrderBy(load => load.gameObject.GetComponent<Collider>().bounds.center.x);
-        IEnumerable<TransitionPoint> doorLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.door)
-            .OrderBy(load => load.gameObject.GetComponent<Collider>().bounds.center.x);
-        IEnumerable<TransitionPoint> otherLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.unknown)
-            .OrderBy(load => load.gameObject.GetComponent<Collider>().bounds.center.x);
-        
-        foreach (TransitionPoint tp in leftLoads.Concat(rightLoads).Concat(topLoads).Concat(bottomLoads).Concat(doorLoads).Concat(otherLoads))
-        {
-            DebugMod.DebugMod.LogConsole(tp.name);
-        }
-
-        // string[] names = transitionPoints.Select(t => t.name).ToArray();
-
-
-        // foreach (string name in names) Console.AddLine(name);
-        // TransitionPoint[] leftLoads = transitionPoints.Where(t => t.entryPoint.StartsWith("left"));
-        // TransitionPoint[] rightLoads = transitionPoints.Where(t => t.entryPoint.StartsWith("left"));
-        // TransitionPoint[] leftLoads = transitionPoints.Where(t => t.entryPoint.StartsWith("left"));
-        // TransitionPoint[] leftLoads = transitionPoints.Where(t => t.entryPoint.StartsWith("left"));
-        // var scenes = SceneWatcher.LoadedScenes;
-        // string[] loadedScenes = scenes.Select(s => s.name).ToArray();
-        // Console.AddLine($"{(PlayerData.instance.atBench ? "Given" : "Taken away")} bench storage");
-    }
+    // Doesn't appear to work & unlikely to be useful
+    // [BindableMethod(name = "Print load names", category = "Glitches")]
+    // public static void PrintLoadNames()
+    // {
+    //     IEnumerable<TransitionPoint> transitionPoints = TransitionPoint.TransitionPoints;
+    //     IEnumerable<TransitionPoint> leftLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.left && t.GetComponent<Collider>())
+    //         .OrderBy(load => -load.gameObject.GetComponent<Collider>().bounds.center.y);
+    //     IEnumerable<TransitionPoint> rightLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.right && t.GetComponent<Collider>())
+    //         .OrderBy(load => -load.gameObject.GetComponent<Collider>().bounds.center.y);
+    //     IEnumerable<TransitionPoint> topLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.top && t.GetComponent<Collider>())
+    //         .OrderBy(load => load.gameObject.GetComponent<Collider>().bounds.center.x);
+    //     IEnumerable<TransitionPoint> bottomLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.bottom && t.GetComponent<Collider>())
+    //         .OrderBy(load => load.gameObject.GetComponent<Collider>().bounds.center.x);
+    //     IEnumerable<TransitionPoint> doorLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.door && t.GetComponent<Collider>())
+    //         .OrderBy(load => load.gameObject.GetComponent<Collider>().bounds.center.x);
+    //     IEnumerable<TransitionPoint> otherLoads = transitionPoints.Where(t => t.GetGatePosition() == GlobalEnums.GatePosition.unknown && t.GetComponent<Collider>())
+    //         .OrderBy(load => load.gameObject.GetComponent<Collider>().bounds.center.x);
+    //     
+    //     foreach (TransitionPoint tp in leftLoads.Concat(rightLoads).Concat(topLoads).Concat(bottomLoads).Concat(doorLoads).Concat(otherLoads))
+    //     {
+    //         DebugMod.DebugMod.LogConsole(tp.name);
+    //     }
+    //
+    //     // string[] names = transitionPoints.Select(t => t.name).ToArray();
+    //
+    //
+    //     // foreach (string name in names) Console.AddLine(name);
+    //     // TransitionPoint[] leftLoads = transitionPoints.Where(t => t.entryPoint.StartsWith("left"));
+    //     // TransitionPoint[] rightLoads = transitionPoints.Where(t => t.entryPoint.StartsWith("left"));
+    //     // TransitionPoint[] leftLoads = transitionPoints.Where(t => t.entryPoint.StartsWith("left"));
+    //     // TransitionPoint[] leftLoads = transitionPoints.Where(t => t.entryPoint.StartsWith("left"));
+    //     // var scenes = SceneWatcher.LoadedScenes;
+    //     // string[] loadedScenes = scenes.Select(s => s.name).ToArray();
+    //     // Console.AddLine($"{(PlayerData.instance.atBench ? "Given" : "Taken away")} bench storage");
+    // }
 }
