@@ -5,6 +5,8 @@ namespace GlitchDebug;
 
 internal static class Savestates
 {
+    internal static bool UndupeThisState;
+    
     private static bool StateFlagEnabled(SaveState state, string flagName)
     {
         state.data.customData.TryGetValue(flagName, out var flag);
@@ -13,11 +15,12 @@ internal static class Savestates
 
     internal static void OnSave(SaveState state)
     {
-        if (GlitchDebugPlugin.Instance.SaveDupedStates && !GlitchDebugPlugin.Instance.undupeThisState)
+        if ((GlitchDebugPlugin.Instance.SaveDupedStates.Value || !UndupeThisState) && state.data.loadedScenes.Length > 1)
         {
             state.data.customData["GlitchDebug.Duped"] = "true";
         }
-
+        UndupeThisState = false; // reset Undupe Active Room override
+        
         if (HeroController.instance.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Kinematic)
         {
             state.data.customData["GlitchDebug.Noclip"] = "true";
@@ -33,13 +36,12 @@ internal static class Savestates
         {
             state.data.customData["GlitchDebug.PogoStorage"] = "true";
         }
-
-        GlitchDebugPlugin.Instance.undupeThisState = false; // reset Undupe Active Room override
+        
     }
 
     internal static void BeforeLoad(SaveState state)
     {
-        if (StateFlagEnabled(state, "GlitchDebug.Duped"))
+        if (StateFlagEnabled(state, "GlitchDebug.Duped") || GlitchDebugPlugin.Instance.LegacyForceDuped.Value)
         {
             SaveState.LoadDuped = true;
         }
