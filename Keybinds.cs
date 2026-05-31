@@ -11,14 +11,14 @@ namespace GlitchDebug;
 
 public class Keybinds
 {
-    [BindableMethod(name = "Toggle Duped States", category = "Glitches")]
+    [BindableMethod(name = "GLITCHES_TOGGLEDUPEDSTATES", category = "CATEGORY_GLITCHES")]
     public static void ToggleDupedStates()
     {
         GlitchDebugPlugin.Instance.SaveDupedStates.Value ^= true;
         DebugMod.DebugMod.LogConsole($"Duped states {(GlitchDebugPlugin.Instance.SaveDupedStates.Value ? "enabled" : "disabled")}");
     }
     
-    [BindableMethod(name = "MMS dupe to bench", category = "Glitches")]
+    [BindableMethod(name = "GLITCHES_MMSDUPETOBENCH", category = "CATEGORY_GLITCHES")]
     public static void MMS_Dupe() {
         GameManager.instance.StartCoroutine(DupeToTut_01());
     }
@@ -33,21 +33,21 @@ public class Keybinds
         GameManager.instance.ReadyForRespawn(false);
     }
     
-    [BindableMethod(name = "Toggle Noclip", category = "Glitches")]
+    [BindableMethod(name = "GLITCHES_TOGGLENOCLIP", category = "CATEGORY_GLITCHES")]
     public static void ToggleNoclip()
     {
         var rb2d = HeroController.instance.GetComponent<Rigidbody2D>();
         rb2d.bodyType = rb2d.bodyType == RigidbodyType2D.Dynamic ? RigidbodyType2D.Kinematic :  RigidbodyType2D.Dynamic;
     }
 
-    [BindableMethod(name = "Toggle Bench Storage", category = "Glitches")]
+    [BindableMethod(name = "GLITCHES_TOGGLEBENCHSTORAGE", category = "CATEGORY_GLITCHES")]
     public static void ToggleBenchStorage()
     {
         PlayerData.instance.atBench = !PlayerData.instance.atBench;
         DebugMod.DebugMod.LogConsole($"{(PlayerData.instance.atBench ? "Given" : "Taken away")} bench storage");
     }
 
-    [BindableMethod(name = "Toggle Pogo Storage", category = "Glitches")]
+    [BindableMethod(name = "GLITCHES_TOGGLEPOGOSTORAGE", category = "CATEGORY_GLITCHES")]
     public static void TogglePogoStorage()
     {
         if (HeroController.instance.currentDownspike && !HeroController.instance.currentDownspike.EnemyDamager.endedDamage)
@@ -61,7 +61,7 @@ public class Keybinds
         }
     }
     
-    [BindableMethod(name = "Dupe Active Room", category = "Glitches")]
+    [BindableMethod(name = "GLITCHES_DUPEACTIVEROOM", category = "CATEGORY_GLITCHES")]
     public static void DupeActiveRoom()
     {
         GameManager.instance.StartCoroutine(LoadRoom(USceneManager.GetActiveScene().name));
@@ -83,7 +83,7 @@ public class Keybinds
         }
     }
 
-    [BindableMethod(name = "Undupe Active Room", category = "Glitches")]
+    [BindableMethod(name = "GLITCHES_UNDUPEACTIVEROOM", category = "CATEGORY_GLITCHES")]
     public static void UndupeActiveRoom()
     {
         Savestates.UndupeThisState = true;
@@ -91,7 +91,7 @@ public class Keybinds
         GameManager.instance.StartCoroutine(state.Load());
     }
 
-    [BindableMethod(name = "Reset All Scene Data", category = "Glitches")]
+    [BindableMethod(name = "GLITCHES_RESETALLSCENEDATA", category = "CATEGORY_GLITCHES")]
     public static void ResetAllSceneData()
     {
         SceneData.instance.Reset();
@@ -101,7 +101,7 @@ public class Keybinds
     }
     
     // Doesn't appear to work & unlikely to be useful
-    // [BindableMethod(name = "Print load names", category = "Glitches")]
+    // [BindableMethod(name = "Print load names", category = "CATEGORY_GLITCHES")]
     // public static void PrintLoadNames()
     // {
     //     IEnumerable<TransitionPoint> transitionPoints = TransitionPoint.TransitionPoints;

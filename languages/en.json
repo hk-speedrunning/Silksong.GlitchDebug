@@ -1,0 +1,12 @@
+{
+  "INFOPANEL_ALLSCENES": "All Scenes",
+  "CATEGORY_GLITCHES": "Glitches",
+  "GLITCHES_TOGGLEDUPEDSTATES": "Toggle Duped States",
+  "GLITCHES_MMSDUPETOBENCH": "MMS dupe to bench",
+  "GLITCHES_TOGGLENOCLIP": "Toggle Noclip",
+  "GLITCHES_TOGGLEBENCHSTORAGE": "Toggle Bench Storage",
+  "GLITCHES_TOGGLEPOGOSTORAGE": "Toggle Pogo Storage",
+  "GLITCHES_DUPEACTIVEROOM": "Dupe Active Room",
+  "GLITCHES_UNDUPEACTIVEROOM": "Undupe Active Room",
+  "GLITCHES_RESETALLSCENEDATA": "Reset All Scene Data"
+}
