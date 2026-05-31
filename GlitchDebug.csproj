@@ -18,7 +18,8 @@
 
         <!-- Shortens and anonymizes paths in debug symbols relative to the project directory. Breakpoints will not work, however. -->
         <PathMap Condition="'$(Configuration)' == 'Release'">$(MSBuildProjectDirectory)=/</PathMap>
-
+        
+        <PackageId>Silksong.GlitchDebug</PackageId>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>icon.png</PackageIcon>
         <RepositoryUrl>https://github.com/hk-speedrunning/Silksong.GlitchDebug</RepositoryUrl>
@@ -47,7 +48,6 @@
     <ItemGroup>
         <Folder Remove="thunderstore/temp;thunderstore/dist"/>
         <None Include="README.md" Pack="True" PackagePath="README.md"/>
-        <None Include="thunderstore/icon.png" Pack="True" PackagePath="icon.png"/>
     </ItemGroup>
 
     <Target Name="CopyAndPackageMod" AfterTargets="PostBuildEvent">
