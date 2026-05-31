@@ -21,7 +21,6 @@
         
         <PackageId>Silksong.GlitchDebug</PackageId>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageIcon>icon.png</PackageIcon>
         <RepositoryUrl>https://github.com/hk-speedrunning/Silksong.GlitchDebug</RepositoryUrl>
     </PropertyGroup>
     <ItemGroup>
