@@ -15,7 +15,7 @@ internal static class Savestates
 
     internal static void OnSave(SaveState state)
     {
-        if ((GlitchDebugPlugin.Instance.SaveDupedStates.Value || !UndupeThisState) && state.data.loadedScenes.Length > 1)
+        if (GlitchDebugPlugin.Instance.SaveDupedStates.Value && !UndupeThisState && state.data.loadedScenes.Length > 1)
         {
             state.data.customData["GlitchDebug.Duped"] = "true";
         }
