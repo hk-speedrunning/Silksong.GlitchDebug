@@ -48,13 +48,13 @@
       },
       "Silksong.DebugMod": {
         "type": "Direct",
-        "requested": "[1.0.2, )",
-        "resolved": "1.0.2",
-        "contentHash": "wNjJ4AQzeSelnEMLOQF7HPDs/6qFbzBAO4VquQtMogmV6gEAEMoqXEsBS/p3F8OXwkb+RC7hcBFFFOcyhXkY1w==",
+        "requested": "[1.1.1, )",
+        "resolved": "1.1.1",
+        "contentHash": "WBKvCRP9NgXdIggKUS1Ybac4gk9xoq/exonVLgoe3jmaaH/8tMhi74cU+9cwA4JL8tWIo69sXph55KGtnWI8pA==",
         "dependencies": {
           "BepInEx.Core": "5.4.21",
           "HarmonyX": "2.9.0",
-          "Silksong.I18N": "1.1.0",
+          "Silksong.I18N": "1.1.1",
           "UnityEngine.Modules": "6000.0.50"
         }
       },
@@ -121,8 +121,8 @@
       },
       "Silksong.I18N": {
         "type": "Transitive",
-        "resolved": "1.1.0",
-        "contentHash": "mOgow6O8QMkAebIZqUu0S41CuQlZ488C66PPLEsD5Q/JWpoGHe6KZfElDWzpkgVo4kFivrKUJsimGR8J5Qv3cQ==",
+        "resolved": "1.1.1",
+        "contentHash": "aRtHyOV1Y2Ar8FPn4/lSrG0MnKKh/T2ES8kNw+mPkkYmB2y12IIlihCgyTvV1vsly83pdCkuOpyJO6urGxPt8A==",
         "dependencies": {
           "BepInEx.Core": "5.4.21",
           "HarmonyX": "2.9.0",
